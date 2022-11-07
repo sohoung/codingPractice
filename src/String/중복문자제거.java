@@ -22,7 +22,7 @@ public class 중복문자제거 {
     public static void main(String[] args) {
         중복문자제거 m = new 중복문자제거();
         Scanner sc = new Scanner(System.in);  // 입력받을 Scanner 사용
-        String str = sc.next();
+        String str = sc.next();  // String 입력
         System.out.println(m.solution(str));
     }
 }
