@@ -21,16 +21,31 @@ import java.util.Scanner;
 public class 임시반장정하기 {
     public int solution(int[][] arr, int n) {
         int answer = 0;
-
+        int max = 0;   // 서로 같은 반이 된 횟수중에서 제일많은 숫자를 저장하는 변수
+        for(int i = 1; i <= n; i++) {  // int형 변수 i를 1로 시작한 이유는 i자체를 학생번호로 생각하기 때문에 0번 학생은 없으므로 1부터 시작한다.
+            int cnt = 0;  // 같은 반으로 만난 횟수
+            for(int j = 1; j <= n; j++) {
+                for(int k = 1; k <= n; k++) {  // int형 변수 k는 학년을 나타낸다.
+                    if(arr[i][k] == arr[j][k]) {
+                        cnt++;
+                        break;  // 어차피 1번만 만나면 카운트하고 다음 학생으로 넘어가야하므로 if문이 true라면 바로 cnt를 1증가해주고 break로 for문을 빠져나온다.
+                    }
+                }
+            }
+            if(cnt>max) {
+                max = cnt;
+                answer = i;  // 최종적으로 몇 번학생이 제일 많이 만났는지 구하는 문제이므로 i를 answer에 넣어준다.
+            }
+        }
         return answer;
     }
     public static void main(String[] args) {
         임시반장정하기 m  = new 임시반장정하기();
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int[][] arr = new int[n][n];
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < n; j++) {
+        int[][] arr = new int[n+1][6];
+        for(int i = 1; i < n; i++) {
+            for(int j = 1; j <= 5; j++) {
                 arr[i][j] = sc.nextInt();
             }
         }
