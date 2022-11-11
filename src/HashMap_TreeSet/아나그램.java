@@ -12,9 +12,16 @@ import java.util.Scanner;
 //          Caaab
 // 출력 예시 : NO
 public class 아나그램 {
+    public String solution(String str1, String str2) {
+        String answer = "YES";
+
+        return answer;
+    }
     public static void main(String[] args) {
         아나그램 m = new 아나그램();
         Scanner sc = new Scanner(System.in);
-
+        String str1 = sc.next();
+        String str2 = sc.next();
+        System.out.println(m.solution(str1,str2));
     }
 }
