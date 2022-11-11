@@ -9,6 +9,10 @@ import java.util.Scanner;
 // 입력 예시 : 15
 //          BACBACCACCBDEDE
 // 출력 예시 : C
+// 추가 함수 설명 -> containsKey("a")는 입력받은 것중에 a가 있으면 true를 반환하고 없으면 false를 반환해준다.
+// 추가 함수 설명 -> size()는 입력받은 문자열에서 알파벳의 종류 갯수를 알려준다.
+// 추가 함수 설명 -> remove()는 특정 값을 삭제한다.
+
 public class 학급회장 {
     public char solution(int n, String str) {
         char answer = ' ';
