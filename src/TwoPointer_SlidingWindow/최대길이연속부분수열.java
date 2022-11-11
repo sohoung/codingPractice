@@ -13,6 +13,21 @@ import java.util.Scanner;
 public class 최대길이연속부분수열 {
     public int solution(int[] arr, int n, int k) {
         int answer = 0;
+        int cnt = 0;  // 0에서1로 바꾼 횟수
+        int lt = 0;   // 배열의 시작 index지점
+        for(int rt = 0; rt < n; rt++) {
+            if(arr[rt] == 0) {  // 문제의 조건에 따라 현재 index의 값이 0이라면 1로 바꾼다.
+                cnt++;          // 0에서 1로 바꾸는 횟수가 2회로 제한되어있으므로 cnt를 1증가시킨다.
+            }
+            while(cnt>k) {      // k가 제한된 횟수이며 만약 0에서 1로 바꾼 횟수가 2를 넘어가게되면 다시 1에서 0으로 바꿔줘야한다.
+                if(arr[lt] == 0) {  // arr[lt]의 값이 0이라면 cnt를 1감소시켜주고 lt의 값을 1증가시켜준다.
+                    cnt--;
+                }
+                lt++;  // 0인지점을 찾아줘야하므로 lt를 1증가시켜준다.
+            }
+            answer = Math.max(answer,rt-lt+1);  // rt-lt+1은 연속된 1의 길이를 구해줘야하므로 연속된 숫자의 마지막 index rt에서 맨 처음 index lt를 빼주고
+                                                // 거기에 1을 더해줘야 길이값이 나온다.
+        }
         return answer;
     }
     public static void main(String[] args) {
