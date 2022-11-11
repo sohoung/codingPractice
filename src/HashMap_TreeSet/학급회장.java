@@ -13,14 +13,15 @@ public class 학급회장 {
     public char solution(int n, String str) {
         char answer = ' ';
         HashMap<Character,Integer> map = new HashMap<>();
-        for(char x : str.toCharArray()) {
-            map.put(x,map.getOrDefault(x,0)+1);
+        // Key값은 Character형이고 Value값은 Integer형인 HashMap 객체를 하나 생성해준다.
+        for(char x : str.toCharArray()) {  // str은 배열이 아니므로 먼저 배열로 만들어준다음
+            map.put(x,map.getOrDefault(x,0)+1);  // map에 값을 넣어준다. getOrDefault는 값이 없다면 0으로 값을 넣으라는 함수이다.
         }
-        int max = 0;
+        int max = 0;  // 값을 비교할 max를 하나 선언해준다.
         for(char key : map.keySet()) {
-            if(map.get(key) > max) {
-                max = map.get(key);
-                answer = key;
+            if(map.get(key) > max) {  // map.get으로 가져온 value값을 max와 비교를 해주고 max보다 map.get의 value값이 더 크다면
+                max = map.get(key);   // map.get의 value값을 max에 넣어준다.
+                answer = key;         // 출력값이 어떤 알파벳인지 묻는 문제이므로 answer에 key값을 넣어준다.
             }
         }
         return answer;
