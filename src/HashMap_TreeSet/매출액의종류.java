@@ -20,8 +20,21 @@ import java.util.Scanner;
 public class 매출액의종류 {
     public ArrayList<Integer> solution(int[] arr, int n, int k) {
         ArrayList<Integer> answer = new ArrayList<>();
-        HashMap<Integer,Integer> map = new HashMap<>();
-
+        HashMap<Integer,Integer> map = new HashMap<>();  // Key형이 Integer이고 Value값이 Integer인 HashMap 객체 생성
+        for(int i = 0; i < k-1; i++) {  // 처음에 k-1까지의 값을 먼저 세팅해준다. k가 4라면 index번호 0,1,2까지의 값을 먼저 세팅해준다.
+            map.put(arr[i], map.getOrDefault(arr[i],0)+1);
+        }
+        int lt = 0;  // index의 시작 지점
+        for(int rt = k-1; rt < n; rt++) {  // rt로 이제 n-1까지의 index까지 탐색한다.
+            map.put(arr[rt],map.getOrDefault(arr[rt],0)+1);  // arr[rt]의 값으로 먼저 세팅된 map에 넣어주고
+            answer.add(map.size());   // answer에 map의 종류를 map.size()함수로 첫 번째 값을 넣어준다.
+            map.put(arr[lt],map.get(arr[lt])-1);  // 그 다음 arr[lt]를 먼저 빼준다.
+            if(map.get(arr[lt])==0) {  // 하지만 arr[lt]를 빼는 과정에서 arr[lt]의 값이 빠지더라도 0으로 value값이 있다고 할 수 있기 때문에 만약 value값이 0인 데이터가
+                                       // 있다면 map.remove()로 데이터를 완전히 지워준다.
+                map.remove(arr[lt]);
+            }
+            lt++;   // 그리고 다시 다음 차례의 for문을 수행하기 위해 lt를 1증가시켜준다.
+        }
         return answer;
     }
     public static void main(String[] args) {
