@@ -1,4 +1,5 @@
 package HashMap_TreeSet;
+import java.util.HashMap;
 import java.util.Scanner;
 
 // 설명 : Anagram이란 두 문자열이 알파벳의 나열 순서를 다르지만 그 구성이 일치하면 두 단어는 아나그램이라고 합니다.
@@ -14,7 +15,14 @@ import java.util.Scanner;
 public class 아나그램 {
     public String solution(String str1, String str2) {
         String answer = "YES";
-
+        HashMap<Character,Integer> map = new HashMap<>();  // Key값이 Character형이고 Value값이 Integer형인 HashMap 객체 생성
+        for(char x : str1.toCharArray()) {   // 향상된 for문으로 str1의 Key값에 대한 Value값을 데이터에 넣는다.
+            map.put(x,map.getOrDefault(x,0)+1);
+        }
+        for(char x : str2.toCharArray()) {
+            if(!map.containsKey(x) || map.get(x) == 0) return "NO";  // if문으로 str1과 str2에서 만약 없는 알파벳이 str2에서 나오면 바로 return값을 NO로 반환한다.
+            map.put(x,map.get(x)-1);  // 문제의 조건대로 str1과 str2를 비교하여 같은 알파벳이 나오면 값을 1감소시키면서 아나그램인지 본다.
+        }
         return answer;
     }
     public static void main(String[] args) {
