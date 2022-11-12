@@ -9,17 +9,37 @@ import java.util.Scanner;
 // 출력 예시 : 3
 
 public class 모든아나그램찾기 {
-    public int solution(String str1, String str2) {
+    public int solution(String a, String b) {
         int answer = 0;
-        HashMap<Character,Integer> map = new HashMap<>();
-        
+        HashMap<Character,Integer> am = new HashMap<>();
+        HashMap<Character,Integer> bm = new HashMap<>();
+        for(char x : b.toCharArray()) {
+            bm.put(x,bm.getOrDefault(x,0)+1);
+        }
+        int lt = 0;
+        int L = b.length()-1;
+        for(int i = 0; i < L; i++) {
+            am.put(a.charAt(i), am.getOrDefault(a.charAt(i),0)+1);
+        }
+        for(int rt = L; rt < a.length(); rt++) {
+            am.put(a.charAt(rt),am.getOrDefault(a.charAt(rt),0)+1);
+            if(am.equals(bm)) {
+                answer++;
+            }
+            am.put(a.charAt(lt),am.get(a.charAt(lt))-1);
+            if(am.get(a.charAt(lt)) == 0) {
+                am.remove(a.charAt(lt));
+            }
+            lt++;
+        }
+
         return answer;
     }
     public static void main(String[] args) {
         모든아나그램찾기  m = new 모든아나그램찾기();
         Scanner sc = new Scanner(System.in);
-        String str1 = sc.next();
-        String str2 = sc.next();
-        System.out.println(m.solution(str1,str2));
+        String a = sc.next();
+        String b = sc.next();
+        System.out.println(m.solution(a,b));
     }
 }
