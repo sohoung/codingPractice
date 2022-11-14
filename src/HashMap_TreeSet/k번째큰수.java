@@ -12,6 +12,8 @@ import java.util.TreeSet;
 //           13 15 34 23 45 65 33 11 26 42
 // 출력 예시 : 143
 // 함수 -> set() : 중복제거 함수
+// 함수 -> first() : 오름차순에서는 최솟값 return, 내림차순에서는 최댓값을 return한다.
+// 함수 -> last() : first()와 반대
 public class k번째큰수 {
     public int solution(int n, int k, int[] arr) {
         int answer = -1;  // answer값을 -1로 해주는 이유는 문제에서 원하는 순서의 값이 없다면 -1로 출력하라고 하였으므로 아래의 코드가 다 거짓으로되었을때는 원하는 k번째의 수가
