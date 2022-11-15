@@ -1,4 +1,7 @@
 package Stack_Queue;
+import java.sql.SQLOutput;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 // 설명 : 현수는 1년 과정의 수업계획을 짜야 합니다.
@@ -16,7 +19,20 @@ import java.util.Scanner;
 public class 교육과정설계 {
     public String solution(String str1, String str2) {
         String answer = "YES";
-
+        Queue<Character> Q = new LinkedList<>();
+        for(char x : str1.toCharArray()) {  // 입력받은 필수과멱 str1을 Q에 데이터를 차례대로 넣어준다.
+            Q.offer(x);
+        }
+        for(char x : str2.toCharArray()) {  // 입력받은 str2에서 x와 Q의 데이터가 다르면 계획을 잘못 작성했으므로 return값을 NO로 반환해준다.
+            if(Q.contains(x)) {
+                if(x != Q.poll()) {
+                    return "NO";
+                }
+            }
+        }
+        if(!Q.isEmpty()) {  // 비어있지 않다는 말은 필수과목을 듣지 않았다는 이야기이므로 return값을 NO해준다.
+            return "NO";
+        }
         return answer;
     }
     public static void main(String[] args) {
@@ -24,5 +40,6 @@ public class 교육과정설계 {
         Scanner sc = new Scanner(System.in);
         String str1 = sc.next();
         String str2 = sc.next();
+            System.out.println(m.solution(str1,str2));
     }
 }
