@@ -10,7 +10,7 @@ import java.util.Scanner;
 // 출력 예시 : D
 public class 중복확인 {
     public String solution(int n , int[] arr) {
-        String answer = "";
+        String answer = "D";
         
         return answer;
     }
