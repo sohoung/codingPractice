@@ -18,7 +18,7 @@ public class LRU_카카오변형 {
             int pos = -1;  // index 번호
             for(int i = 0; i < size; i++) {
                 if(x == cache[i]) {  // 히트인경우 히트된 index를 pos에 저장
-                    pos = i;
+                    pos = i;  // 히트가 난 지점의 index를 pos에 저장
                 }
             }
             if(pos == -1) {  // 미스난 경우 앞으로 값을 땡겨준다.
