@@ -1,4 +1,5 @@
 package SortingandSearching;
+import java.util.Arrays;
 import java.util.Scanner;
 
 // 설명 : 현수네 반에는 N명의 학생들이 있습니다.
@@ -10,8 +11,13 @@ import java.util.Scanner;
 // 출력 예시 : D
 public class 중복확인 {
     public String solution(int n , int[] arr) {
-        String answer = "D";
-        
+        String answer = "U";
+        Arrays.sort(arr);  // 먼저 비교하기 쉽게 오름차순 정렬을 해준다.
+        for(int i = 0; i < n-1; i++) {
+            if(arr[i] == arr[i+1]) {  // 오름차순 정렬이므로 현재의 항과 다음항을 비교하여 같으면 무조건 return값이 "D"로 해주어야한다.
+                return "D";
+            }
+        }
         return answer;
     }
     public static void main(String[] args) {
