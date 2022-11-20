@@ -1,6 +1,5 @@
 package SortingandSearching;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Scanner;
 
 // 설명 : 임의의 N개의 숫자가 입력으로 주어집니다. N개의 수를 오름차순으로 정렬한 다음 N개의 수 중 한 개의 수인 M이 주어지면
