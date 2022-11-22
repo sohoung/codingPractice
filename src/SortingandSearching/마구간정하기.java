@@ -1,4 +1,5 @@
 package SortingandSearching;
+import java.util.Arrays;
 import java.util.Scanner;
 
 // 설명 : N개의 마구간이 수직선상에 있습니다. 각 마구간은 x1, x2, x3, ......, xN의 좌표를 가지며, 마구간간에 좌표가 중복되는 일은 없습니다.
@@ -9,20 +10,43 @@ import java.util.Scanner;
 //          1 2 8 4 9
 // 출력 예시 : 3
 public class 마구간정하기 {
-    public int solution(int n, int k, int[] arr) {
+    public int count(int[] arr , int dist) {
+        int cnt = 1;
+        int ep = arr[0];
+        for(int i = 1; i < arr.length; i++) {
+            if(arr[i]-ep>=dist) {
+                cnt++;
+                ep=arr[i];
+            }
+        }
+        return cnt;
+    }
+    public int solution(int n, int c, int[] arr) {
         int answer = 0;
-        
+        Arrays.sort(arr);
+        int lt = 1;
+        int rt = arr[n-1];
+        while(lt<=rt) {
+            int mid = (lt+rt)/2;
+            if(count(arr,mid)>=c) {
+                answer=mid;
+                lt=mid+1;
+            }
+            else {
+                rt=mid-1;
+            }
+        }
         return answer;
     }
     public static void main(String[] args) {
         마구간정하기  m = new 마구간정하기();
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int k = sc.nextInt();
+        int c = sc.nextInt();
         int[] arr = new int[n];
         for(int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
         }
-        System.out.println(m.solution(n,k,arr));
+        System.out.println(m.solution(n,c,arr));
     }
 }
