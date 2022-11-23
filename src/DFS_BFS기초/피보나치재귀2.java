@@ -1,7 +1,7 @@
 package DFS_BFS기초;
 
 public class 피보나치재귀2 {
-    static int[] fibo;
+    static int[] fibo; // 값을 저장할 fibo 배열
     public int DFS(int n) {
         if(n==1) return fibo[n] = 1;
         else if(n==2) return fibo[n] = 1;
