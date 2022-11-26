@@ -17,9 +17,9 @@ public class 이진트리순회 {
         else {
             System.out.print(root.data + " ");  // 전위
             DFS(root.lt);
-            //System.out.print(root.data + " ");  // 중위
+            System.out.print(root.data + " ");  // 중위
             DFS(root.rt);
-            //System.out.print(root.data + " ");  // 후위
+            System.out.print(root.data + " ");  // 후위
         }
     }
     public static void main(String[] args) {
