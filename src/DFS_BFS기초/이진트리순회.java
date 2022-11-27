@@ -15,11 +15,11 @@ public class 이진트리순회 {
     public void DFS(Node root) {
         if(root==null) return;
         else {
-            System.out.print(root.data + " ");  // 전위
+            // System.out.print(root.data + " ");   전위
             DFS(root.lt);
-            System.out.print(root.data + " ");  // 중위
+            // System.out.print(root.data + " ");   중위
             DFS(root.rt);
-            System.out.print(root.data + " ");  // 후위
+            // System.out.print(root.data + " ");   후위
         }
     }
     public static void main(String[] args) {
