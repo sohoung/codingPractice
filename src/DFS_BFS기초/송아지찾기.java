@@ -7,9 +7,46 @@ package DFS_BFS기초;
 //      최소 몇 번의 점프로 현수가 송아지의 위치까지 갈 수 있는지 구하는 프로그램을 작성하세요.
 // 입력 예시 : 5 14
 // 출력 예시 : 3
+
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
 public class 송아지찾기 {
+    int answer = 0;
+    int[] dis = {1,-1,5};
+    int[] ch;
+    Queue<Integer> Q = new LinkedList<>();
+    public int BFS(int s, int e) {
+        ch= new int[10001];
+        ch[s] = 1;
+        Q.offer(s);
+        int L = 0;
+        while(!Q.isEmpty()) {
+            int len = Q.size();
+            for(int i = 0; i < len; i++) {
+                int x = Q.poll();
+                for(int j = 0; j < 3; j++) {
+                    int nx = dis[j] + x;
+                    if(nx == e) {
+                        return L+1;
+                    }
+                    if(nx >= 1 && nx <= 10000 && ch[nx] == 0) {
+                        ch[nx] = 1;
+                        Q.offer(nx);
+                    }
+                }
+            }
+            L++;
+        }
+        return 0;
+    }
     public static void main(String[] args) {
         송아지찾기  m = new 송아지찾기();
-
+        Scanner sc = new Scanner(System.in);
+        int s = sc.nextInt();
+        int e = sc.nextInt();
+        System.out.println(m.BFS(s,e));
     }
 }
