@@ -15,26 +15,26 @@ import java.util.Scanner;
 
 public class 송아지찾기 {
     int answer = 0;
-    int[] dis = {1,-1,5};
-    int[] ch;
+    int[] dis = {1,-1,5};  // 이동하는 거리 배열
+    int[] ch; // 먼저 방문한 곳은 다시 방문하지 않도록 해주는 체크 배열
     Queue<Integer> Q = new LinkedList<>();
     public int BFS(int s, int e) {
-        ch= new int[10001];
-        ch[s] = 1;
+        ch= new int[10001];  // 좌표가 1 ~ 10000까지이기 때문에
+        ch[s] = 1;  // 출발지점 체크
         Q.offer(s);
         int L = 0;
         while(!Q.isEmpty()) {
-            int len = Q.size();
+            int len = Q.size();  // 레벨에 있는 원소의 갯수
             for(int i = 0; i < len; i++) {
                 int x = Q.poll();
                 for(int j = 0; j < 3; j++) {
-                    int nx = dis[j] + x;
+                    int nx = dis[j] + x;  // 지점에 dis의 배열 값들을 하나하나씩 더한다
                     if(nx == e) {
-                        return L+1;
+                        return L+1;  // nx는 x의 자식 노드이기 때문에 x의 레벨 값보다 1 증가한 레벨값으로 return 해주어야 한다.
                     }
-                    if(nx >= 1 && nx <= 10000 && ch[nx] == 0) {
-                        ch[nx] = 1;
-                        Q.offer(nx);
+                    if(nx >= 1 && nx <= 10000 && ch[nx] == 0) {  // if조건문이 true인 경우 방문을 하지 않은 경우이다.
+                        ch[nx] = 1;   // 현재 방문을 했으므로 ch 체크 배열에 값을 넣는다.
+                        Q.offer(nx);  // Q에 값을 넣는다.
                     }
                 }
             }
