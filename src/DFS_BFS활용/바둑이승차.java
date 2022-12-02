@@ -13,7 +13,7 @@ import java.util.Scanner;
 // 출력 예시 : 242
 public class 바둑이승차 {
     static int answer = Integer.MIN_VALUE,n,k;
-    public void DFS(int L, int sum, int[] arr) {
+    public void DFS(int L, int sum, int[] arr) { // int L은 레벨을 의미
         if(sum > n) {  // sum이 입력받은 n보다 값이 크다면 바로 return 해준다.
             return;
         }
