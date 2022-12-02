@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class 최대점수구하기 {
     static int answer = Integer.MIN_VALUE, n, k;
     public void DFS(int L, int sum, int time, int[] ps, int[] pt) {
-        if(time > k) {
+        if(time > k) {  // time이 입력받은 k보다 크다면 바로 return시킨다.
             return;
         }
         if(L == n) {  // 부분집합 완성
