@@ -49,7 +49,7 @@ public class 미로의최단거리통로 {
                     // 1<=nx<=7, 1<=ny<=7이면 경계값을 넘어가지 않고 board[nx][ny]가 0이면 벽이 없다는 말이므로 갈 수 있다는 통로라는 말이다.
                     board[nx][ny] = 1;  // 위의 if문이 true라면 갈 수 있는 통로이므로 1을 넣어주고
                     Q.offer(new Point(nx,ny));  // Q에 넣어준다.
-                    dis[nx][ny] = dis[tmp.x][tmp.y] + 1;
+                    dis[nx][ny] = dis[tmp.x][tmp.y] + 1;  // 그래프 최단 거리와 비슷한 활용
                     // 그 다음 최단 거리를 구해야 하므로 dis[nx][ny]에 현재 지점인 dis[tmp.x]tmp.y]에 +1을 해주어서 그 다음 지점으로 넘어갔다는 것을 카운트 해준다.
                 }
             }
