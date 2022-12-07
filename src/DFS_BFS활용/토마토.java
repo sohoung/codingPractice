@@ -24,16 +24,18 @@ public class 토마토 {
     static int[][] board, day;
     static int n, k;
     static Queue<Point> Q = new LinkedList<>();
+    // static으로 잡은 이유는 BFS도 접근하지만 Main에다가 출발점들을 넣어야하므로 Main도 접근해야하므로 static으로 잡았다.
     public void BFS() {
         while(!Q.isEmpty()) {
             Point tmp = Q.poll();
             for(int i = 0; i < 4; i++) {
-                int nx = tmp.x + dx[i];
-                int ny = tmp.y + dy[i];
-                if(nx >= 0 && nx < n && ny >= 0 && ny < n && board[nx][ny] == 0) {
-                    board[nx][ny] = 1;
+                int nx = tmp.x + dx[i];  // 미리 static으로 만들어놓은 dx배열로 12시,3시,6시,9시에 대한 x좌표 탐색
+                int ny = tmp.y + dy[i];  // 미리 static으로 만들어놓은 dy배열로 12시,3시,6시,9시에 대한 y좌표 탐색
+                if(nx >= 0 && nx < n && ny >= 0 && ny < k && board[nx][ny] == 0) {
+                    // 경계값을 넘어가지 않고 익은 토마토를 기준으로 12시,3시,6시,9시의 토마토들이 익지 않았다면 실행
+                    board[nx][ny] = 1;  // 익은 토마토를 기준으로 12시,3시,6시,9시에 있는 토마토는 그 다음날 익은 토마토로 변하므로 익은 토마토라는 것을 알기위해 1을 넣어준다.
                     Q.offer(new Point(nx,ny));
-                    day[nx][ny] = day[tmp.x][tmp.y] + 1;
+                    day[nx][ny] = day[tmp.x][tmp.y] + 1;  // 익은 토마토들의 날짜를 계산하기 위한 day배열에 +1을 해준다음 값을 넣는다.
                 }
             }
         }
@@ -43,36 +45,36 @@ public class 토마토 {
         Scanner sc = new Scanner(System.in);
         k = sc.nextInt();  // 열
         n = sc.nextInt();  // 행
-        board = new int[n][k];
-        day = new int[n][k];
+        board = new int[n][k];  // 문제의 조건대로 토마토 상자를 입력받은 n과 k에 따른 배열 크기 할당
+        day = new int[n][k];    // 익은 토마토들의 날짜를 계산하기 위한 배열로 입력받은 n과 k에 따른 배열 크기 할당
         for(int i = 0; i < n; i++) {
-            for(int j = 0; j < k; i++) {
-                board[i][j] = sc.nextInt();
-                if(board[i][j] == 1) {
+            for(int j = 0; j < k; j++) {
+                board[i][j] = sc.nextInt();  // 이중 for문으로 board 배열에 값을 넣어준다.
+                if(board[i][j] == 1) {  // board 배열의 값을 입력받을 때 익은 토마토가 들어온다면 바로 Q에 넣어준다.
                     Q.offer(new Point(i,j));
                 }
             }
         }
         m.BFS();
-        boolean flag = true;
-        int answer = Integer.MAX_VALUE;
+        boolean flag = true;  // 문제의 조건 중 익지 않은 토마토가 있다면 -1을 출력하라고 했으므로 만약에 -1을 출력하여야 한다면 -1을 출력하기 위한 boolean형 변수
+        int answer = Integer.MIN_VALUE;
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < k; j++) {
-                if(board[i][j] == 0){
+                if(board[i][j] == 0){  // 위의 for문들로 토마토들이 더 이상 변하는 값이 없을 때 익지 않은 토마토가 있다면 flag를 false로 바꿔주고 -1을 출력해준다.
                     flag = false;
                 }
             }
         }
-        if(flag) {
+        if(flag) {  // 익지 않은 토마토가 있다면 if문이 false이므로 아래의 코드는 실행하지 않는다.
             for(int i = 0; i < n; i++) {
                 for(int j = 0; j < k; j++) {
-                    answer = Math.max(answer,day[i][j]);
+                    answer = Math.max(answer,day[i][j]);  // answer와 day[i][j]의 값을 비교하여서 더 큰 것을 answer에 넣어준다.
                 }
             }
             System.out.print(answer);
         }
         else {
-            System.out.print(-1);
+            System.out.print(-1);  // if문이 false이므로 answer의 답을 구할 수 없다. 즉 익지 않은 토마토가 있다는 것이므로 -1을 출력
         }
     }
 }
