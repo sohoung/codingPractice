@@ -36,12 +36,11 @@ public class 씨름선수 {
         Collections.sort(arr);  // 위의 override 기준에 의해 내림차순으로 정렬한다.
         int max = Integer.MIN_VALUE; // 최댓값을 찾기 위해 최솟값으로 초기화
         for(Body ob : arr) {
-            if(ob.w > max) {
+            if(ob.w > max) {  // 첫 번째의 씨름선수는 무조건 if문이 true로 된다.
                 max = ob.w;
                 cnt++;
             }
         }
-
         return cnt;
     }
     public static void main(String[] args) {
@@ -52,7 +51,7 @@ public class 씨름선수 {
         for(int i = 0; i < n; i++) {
             int h = sc.nextInt();
             int w = sc.nextInt();
-            arr.add(new Body(h,w));
+            arr.add(new Body(h,w));  // ArrayList에 add로 입력받은 h와 w를 넣어준다.
         }
         System.out.println(m.solution(arr,n));
     }
