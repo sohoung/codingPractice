@@ -18,10 +18,15 @@ import java.util.Scanner;
 //           2 3
 // 출력 예시 2 : 2
 public class 회의실배정 {
+    public int solution(int[] arr)
     public static void main(String[] args) {
         회의실배정  m = new 회의실배정();
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        
+        int[] arr = new int[n];
+        for(int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        System.out.println();
     }
 }
