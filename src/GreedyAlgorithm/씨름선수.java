@@ -24,7 +24,7 @@ class Body implements Comparable<Body> {
         this.h = h;  // 키
         this.w = w;  // 몸무게
     }
-        @Override
+        @Override  // 재정의를 해준다.
         public int compareTo (Body o){
             return o.h - this.h;  // 입력받은 키에 대한 내림차순 정렬
     }
@@ -37,7 +37,7 @@ public class 씨름선수 {
         int max = Integer.MIN_VALUE; // 최댓값을 찾기 위해 최솟값으로 초기화
         for(Body ob : arr) {
             if(ob.w > max) {  // 첫 번째의 씨름선수는 무조건 if문이 true로 된다.
-                max = ob.w;
+                max = ob.w;  // max를 ob.w로 바꿔준다.
                 cnt++;
             }
         }
