@@ -42,8 +42,17 @@ public class 최대수입스케쥴 {
         int j = 0;
         for(int i = max; i >= 1; i--) {  // max 날짜부터 1까지 for문 수행
             for( ; j < n; j++) {
-                if(arr.get(j).date < i) break;  // 만약 max의 날짜보다 arr.get(j)date의 날짜가 크다면 더이상 p에 money를 넣지 않아야 하므로 break
-                p.offer(arr.get(j).money);  // max의 날짜보다 arr.get(j).date의 날짜가 작다면 p에 money를 넣어준다.
+                if(arr.get(j).date < i) break;  // 만약 max의 날짜보다 arr.get(j)date의 날짜가 작다면 더이상 p에 money를 넣지 않아야 하므로 break
+                p.offer(arr.get(j).money);
+                // max의 날짜보다 arr.get(j).date의 날짜가 크거나 같다면 p에 money를 넣어준다.
+                // 즉 입력받은 money와 date에서
+                // 60 3
+                // 30 3
+                // 50 2
+                // 40 2
+                // 30 1
+                // 20 1 에서 뒤의 date 즉 3에서 2로 넘어갈 때는 money를 넣지않고 if(arr.get(j).date < i)가 true가 되므로 그 아래인
+                // if(!p.isEmpty())를 수행한다.
             }
             if(!p.isEmpty()) answer += p.poll();
             // p가 비어있지 않다면 answer에 p에 들어있는 값들 중에 설정되어있는 우선순위에서 제일 적합한 값을 p에 poll로 return시켜준다.
