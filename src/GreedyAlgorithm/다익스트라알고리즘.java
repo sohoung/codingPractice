@@ -72,18 +72,19 @@ public class 다익스트라알고리즘 {
         int k = sc.nextInt();  // 간선의 갯수
         graph = new ArrayList<ArrayList<Edge>>();  // Edge라는 객체를 저장할 수 있는 ArrayList
         for(int i = 0; i <= n; i++) {
-            graph.add(new ArrayList<Edge>());  // ArrayList 객체를 n번까지 만들어준다.
+            graph.add(new ArrayList<Edge>());  // 먼저 시작되는 정점의 갯수에 대한 ArrayList 객체를 생성해준다.
         }
-        dis = new int[n+1];
+        dis = new int[n+1];  // index 번호를 정점의 번호로 보기 때문에 배열의 크기를 n+1로 잡아준다.
         Arrays.fill(dis,Integer.MAX_VALUE);
         // fill 함수로 dis 배열에 있는 모든 값들을 Integer.MAX_VALUE로 값을 초기화해준다. 이유는 Integer.MAX_VALUE로 값을 초기화 하였을 때
         // 결국 최솟값을 구하는 것이므로 1번 정점부터 가지 못하는 정점은 그대로 Integer.MAX_VALUE 값이 그대로 있을 것이다.
         // 1번 정점부터 가지 못한 정점을 판별하기 위한 것으로 하기 위해서이다.
         for(int i = 0; i < k; i++) {
-            int a = sc.nextInt();
-            int b = sc.nextInt();
-            int c = sc.nextInt();
+            int a = sc.nextInt();    // a번 정점
+            int b = sc.nextInt();    // b번 정점까지
+            int c = sc.nextInt();    // a번 정점에서 b번 정점으로 가는 가중치
             graph.get(a).add(new Edge(b,c));
+            // ArrayList이므로 get으로 접근해야한다. a번 정점 객체로 접근해서 a번 정점에서 b번 정점까지의 가중치를 ArrayList인 arr에 add해준다.
         }
         m.solution(1);  // 1번 정점에서 출발
         for(int i = 2; i <= n; i++) {  // 2번 정점부터 탐색해야하므로 int i는 2부터 시작하고 index 번호를 정점의 번호로 보기 때문에 i를 n까지 되도록 수행한다.
