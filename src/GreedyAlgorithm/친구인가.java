@@ -15,11 +15,61 @@ import java.util.Scanner;
 //           6 7
 //           7 8
 //           8 9
-//           3 8
+//           3 8  3번 학생과 8번 학생은 친구인지 묻는 입력
 // 출력 예시 : NO
+// Disjoint-Set = 서로소 집합
+
 public class 친구인가 {
-    public static void main(String[] args) {
-        친구인가  m = new 친구인가();
-        Scanner sc = new Scanner(System.in);
+    static int[] unf;  // index 번호는 학생 번호로 생각하고 배열의 데이터 값은 집합의 번호를 의미한다.
+    public static int Find(int v) {
+        if (v == unf[v]) {
+            return v;
+        }
+        else {
+            return unf[v] = Find(unf[v]);
+            // 시간 복잡도를 줄이기 위한 경로 압축 코드이다. 
+        }
     }
-}
+        public static void Union(int a, int b){
+            int fa = Find(a);
+            int fb = Find(b);
+            if (fa != fb) {
+                unf[fa] = fb;
+            }
+    }
+        public static void main (String[]args){
+            친구인가 m = new 친구인가();
+            Scanner sc = new Scanner(System.in);
+            int n = sc.nextInt();  // 학생 수
+            int k = sc.nextInt();  // 순서 쌍의 갯수
+            unf = new int[n+1];    // index 번호를 학생의 번호로 생각하기 때문에 n+1 배열크기
+            for (int i = 1; i <= n; i++) {
+                unf[i] = i;  // 배열안에 index 번호를 그대로 배열의 데이터에 넣는다.
+            }
+            for (int i = 1; i <= k; i++) {
+                int a = sc.nextInt();
+                int b = sc.nextInt();
+                Union(a, b);  // 친구 관계의 for문
+            }
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            int fa = Find(a);
+            int fb = Find(b);
+            if(fa == fb) {
+                System.out.println("YES");
+            }
+            else {
+                System.out.println("NO");
+            }
+            System.out.println(Find(1));  // 위의 코드로 집합의 번호가 1번 학생부터 5번 학생까지는 다 같고
+            System.out.println(Find(2));
+            System.out.println(Find(3));
+            System.out.println(Find(4));
+            System.out.println(Find(5));
+            System.out.println("--------------------------------------");
+            System.out.println(Find(6));  // 6번 학생부터 9번 학생까지의 집합의 번호가 다 같다.
+            System.out.println(Find(7));
+            System.out.println(Find(8));
+            System.out.println(Find(9));
+        }
+    }
