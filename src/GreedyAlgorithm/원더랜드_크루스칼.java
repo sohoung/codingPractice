@@ -19,6 +19,7 @@ import java.util.Scanner;
 //           7 8 35
 //           8 9 15
 // 출력 예시 : 196
+// Union & Find
 public class 원더랜드_크루스칼 {
     public static void main(String[] args) {
         원더랜드_크루스칼  m = new 원더랜드_크루스칼();
