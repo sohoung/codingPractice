@@ -21,7 +21,7 @@ import java.util.Scanner;
 
 public class 친구인가 {
     static int[] unf;  // index 번호는 학생 번호로 생각하고 배열의 데이터 값은 집합의 번호를 의미한다.
-    public static int Find(int v) {
+    public static int Find(int v) {  // Union & Find 사용
         if (v == unf[v]) {
             return v;
         }
@@ -30,7 +30,7 @@ public class 친구인가 {
             // 시간 복잡도를 줄이기 위한 경로 압축 코드이다. 
         }
     }
-        public static void Union(int a, int b){
+        public static void Union(int a, int b){  // Union & Find 사용
             int fa = Find(a);
             int fb = Find(b);
             if (fa != fb) {
