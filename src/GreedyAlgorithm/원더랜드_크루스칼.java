@@ -28,6 +28,7 @@ import java.util.Scanner;
 // 트리 형태로 구현된 Disjoint Set에서 최상위 노드는 각 집합과 1대 1 대응되므로, Find 연산을 통해 각 집합을 알 수 있게 된다. 이 과정에서 상수 시간에 가까운 정도의 시간이 걸린다고 알려져 있다.
 // Union 연산 : Union 연산이 수행되면, 먼저 Find 연산을 수행한 후 두 개의 최상위 노드의 부모를 다른 하나의 최상위 노드로 바꾸어 트리를 병합시킨다.
 // 이 과정에서 시간에 영향을 미치는 것은 Find 연산 뿐이므로, 시간복잡도는 Find 연산과 동일하다는 것을 알 수 있다.
+// 트리의 정점의 갯수가 n개라면 간선의 갯수는 n-1개이다.
 
 class edge implements Comparable<edge> {
     public int v1;    // 정점 1
@@ -91,6 +92,8 @@ public class 원더랜드_크루스칼 {
                     answer += o.cost;
                     Union(o.v1, o.v2);
                     // Union 함수로 v1과 v2를 합해준다.
+                    // 만약 간선의 갯수가 엄청 많이 들어온다고 하면 int cnt를 선언해주고 if(fv1 != fv2)가 true 일 때마다 cnt를 1씩 증가시켜주어서
+                    // 트리이기 때문에 간선의 갯수는 n-1개이므로 if(cnt == n-1)의 조건문을 걸어주어서 if문이 true가 된다면 break 시켜준다.
                 }
             }
             System.out.println(answer);
