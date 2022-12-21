@@ -1,4 +1,5 @@
 package 동적계획법;
+
 import java.util.Scanner;
 
 // 설명 : 철수는 계단을 오를 때 한 번에 한 계단 또는 두 계단씩 올라간다. 만약 총 4계단을 오른다면 그 방법의 수는
@@ -12,19 +13,21 @@ import java.util.Scanner;
 //                         Dynamic Programming인 동적 계획법에서 핵심인 기술이다.
 public class 계단오르기 {
     static int[] dynamic;
+
     public int solution(int n) {
         dynamic[1] = 1;    // 피보나치 수열과 비슷한 문제
         dynamic[2] = 2;    // 피보나치 수열과 비슷한 문제
-        for(int i = 3; i <= n; i++) {
-            dynamic[i] = dynamic[i-1] + dynamic[i-2];
+        for (int i = 3; i <= n; i++) {
+            dynamic[i] = dynamic[i - 1] + dynamic[i - 2];
         }
         return dynamic[n];
     }
+
     public static void main(String[] args) {
-        계단오르기  m = new 계단오르기();
+        계단오르기 m = new 계단오르기();
         Scanner sc = new Scanner(System.in);
-        int n  = sc.nextInt();  // 계단의 갯수
-        dynamic = new int[n+1];
+        int n = sc.nextInt();  // 계단의 갯수
+        dynamic = new int[n + 1];
         System.out.println(m.solution(n));
     }
 }
