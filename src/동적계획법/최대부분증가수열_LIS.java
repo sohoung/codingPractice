@@ -14,7 +14,7 @@ public class 최대부분증가수열_LIS {
     static int[] dy;
     public int solution(int[] arr) {
         int answer = 0;
-        dy = new int[arr.length];
+        dy = new int[arr.length];  // dy 배열은 최대 길이를 저장하는 배열
         dy[0] = 1;
         for(int i = 1; i < arr.length; i++) {
             int max = 0;
@@ -23,7 +23,7 @@ public class 최대부분증가수열_LIS {
                     max = dy[j];
                 }
             }
-            dy[i] = max + 1;
+            dy[i] = max + 1;                   // 자기 자신을 포함한 길이이기 때문에 max에 1을 더해주어서 dy배열에 넣어준다.
             answer = Math.max(answer, dy[i]);  // 최댓값을 구하여야 하기 때문에 Math함수로 answer와 dy[i]의 값 중에서 더 큰 값으로 answer을 갱신 시켜준다.
         }
         return answer;
