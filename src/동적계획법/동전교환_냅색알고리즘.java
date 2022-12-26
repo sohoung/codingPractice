@@ -19,6 +19,8 @@ public class 동전교환_냅색알고리즘 {
         for(int i = 0; i < n; i++) {
             for(int j = coin[i]; j <= k; j++) {
                 dy[j] = Math.min(dy[j], dy[j-coin[i]] + 1);
+                // dy[j-coin[i]]라는 의미는 먼저 coin배열은 입력 받은 동전의 종류를 저장하기 위한 배열이다. 저장된 코인의 종류에 의해서 dy[j-coin[i]]에서 coin[i]에 들어있는
+                // 코인의 종류를 무조건 1개를 쓴다는 가정이다. 그러므로 코인을 무조건 1개 쓰여야하므로 뒤에 +1를 해준다.
             }
         }
         return dy[k];
